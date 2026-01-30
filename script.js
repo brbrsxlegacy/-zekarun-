@@ -1,83 +1,76 @@
-let op = "+";
-let a, b;
+let op, a, b;
 let score = 0;
 let time = 60;
 let timer;
 
 const menu = document.getElementById("menu");
 const game = document.getElementById("game");
-const question = document.getElementById("question");
-const answer = document.getElementById("answer");
+const q = document.getElementById("q");
+const inp = document.getElementById("inp");
 const timeEl = document.getElementById("time");
 const scoreEl = document.getElementById("score");
 
-function startGame(operation) {
-    op = operation;
-    score = 0;
-    time = 60;
-    scoreEl.textContent = "Skor: 0";
+function start(o) {
+  op = o;
+  score = 0;
+  time = 60;
+  scoreEl.textContent = score;
+  timeEl.textContent = time;
+
+  menu.style.display = "none";
+  game.style.display = "flex";
+
+  next();
+  inp.value = "";
+  inp.focus();
+
+  clearInterval(timer);
+  timer = setInterval(() => {
+    time--;
     timeEl.textContent = time;
-
-    menu.classList.remove("active");
-    game.classList.add("active");
-
-    newQuestion();
-    answer.value = "";
-    answer.focus();
-
-    clearInterval(timer);
-    timer = setInterval(() => {
-        time--;
-        timeEl.textContent = time;
-        if (time <= 0) endGame();
-    }, 1000);
+    if (time <= 0) finish();
+  }, 1000);
 }
 
-function newQuestion() {
-    a = rand();
-    b = rand();
-
-    if (op === "/") {
-        a = a * b;
-    }
-
-    question.textContent = `${a} ${op} ${b} = ?`;
+function next() {
+  a = rand();
+  b = rand();
+  if (op === "/") a = a * b;
+  q.textContent = `${a} ${op} ${b}`;
 }
 
-function checkAnswer() {
-    let correct;
-    switch (op) {
-        case "+": correct = a + b; break;
-        case "-": correct = a - b; break;
-        case "*": correct = a * b; break;
-        case "/": correct = a / b; break;
-    }
+function check() {
+  let correct;
+  if (op === "+") correct = a + b;
+  if (op === "-") correct = a - b;
+  if (op === "*") correct = a * b;
+  if (op === "/") correct = a / b;
 
-    if (Number(answer.value) === correct) {
-        score++;
-        scoreEl.textContent = "Skor: " + score;
-    }
+  if (Number(inp.value) === correct) {
+    score++;
+    scoreEl.textContent = score;
+  }
 
-    answer.value = "";
-    newQuestion();
+  inp.value = "";
+  next();
 }
 
-function endGame() {
-    clearInterval(timer);
-    alert("Süre bitti! Skor: " + score);
-    goMenu();
+function finish() {
+  clearInterval(timer);
+  alert("Bitti! Skor: " + score);
+  back();
 }
 
-function goMenu() {
-    clearInterval(timer);
-    game.classList.remove("active");
-    menu.classList.add("active");
+function back() {
+  clearInterval(timer);
+  game.style.display = "none";
+  menu.style.display = "flex";
 }
 
 function rand() {
-    return Math.floor(Math.random() * 10) + 1;
+  return Math.floor(Math.random() * 9) + 1;
 }
 
-answer.addEventListener("keydown", e => {
-    if (e.key === "Enter") checkAnswer();
+inp.addEventListener("keydown", e => {
+  if (e.key === "Enter") check();
 });
