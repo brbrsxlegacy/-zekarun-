@@ -1,36 +1,37 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <title>ZekaRun</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>ZekaRun</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div id="menu" class="screen active">
-    <h1>ZekaRun</h1>
-    <div class="grid">
-        <button onclick="startGame('+')">➕ Toplama</button>
-        <button onclick="startGame('-')">➖ Çıkarma</button>
-        <button onclick="startGame('*')">✖ Çarpma</button>
-        <button onclick="startGame('/')">➗ Bölme</button>
-    </div>
+<div id="menu">
+  <h1>ZekaRun</h1>
+  <div class="cards">
+    <div class="card" onclick="start('+')">➕</div>
+    <div class="card" onclick="start('-')">➖</div>
+    <div class="card" onclick="start('*')">✖</div>
+    <div class="card" onclick="start('/')">➗</div>
+  </div>
 </div>
 
-<div id="game" class="screen">
-    <button class="exit" onclick="goMenu()">⟵ Çık</button>
-    <div class="info">
-        <span id="time">60</span> sn
-        <span id="score">Skor: 0</span>
-    </div>
+<div id="game">
+  <button id="exit" onclick="back()">⟵</button>
+  <div id="top">
+    <span id="time">60</span>s
+    <span id="score">0</span>
+  </div>
 
-    <h2 id="question">Soru</h2>
-    <input id="answer" type="number" placeholder="Cevap" autofocus>
+  <div id="q">?</div>
+  <input id="inp" type="number" placeholder="cevap">
 </div>
 
 <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
