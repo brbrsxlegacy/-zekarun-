@@ -1,62 +1,71 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html>
 <head>
+  <p>TEST123</p>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ZekaRun</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/zekarun/style.css">
+
 </head>
 <body>
 
-  <div class="box" id="menu">
-    <h1>ZekaRun</h1>
-    <p>Hızlı matematik oyunu</p>
-    <button onclick="basla()">Başla</button>
-  </div>
+<h2>ZekaRun</h2>
+<p>1 Dakikalık Hızlı Matematik</p>
 
-  <div class="box" id="oyun" style="display:none;">
-    <h2 id="soru"></h2>
-    <input type="number" id="cevap">
-    <br><br>
-    <button onclick="kontrol()">Cevapla</button>
-    <p id="sonuc"></p>
-  </div>
 
-  <script>
-    let a, b;
+<p id="soru">Başlat'a bas</p>
 
-    function basla() {
-      document.getElementById("menu").style.display = "none";
-      document.getElementById("oyun").style.display = "block";
-      yeniSoru();
+<input id="cevap" type="number">
+<button onclick="kontrol()">Kontrol</button>
+
+<p id="bilgi">Skor: 0 | Süre: 60</p>
+
+<button onclick="basla()">Başlat</button>
+
+<script>
+let a, b, dogru;
+let skor = 0;
+let sure = 60;
+let zaman;
+let aktif = false;
+
+function yeniSoru() {
+  a = Math.floor(Math.random()*10)+1;
+  b = Math.floor(Math.random()*10)+1;
+  dogru = a + b;
+  document.getElementById("soru").innerText = a + " + " + b + " = ?";
+}
+
+function basla() {
+  skor = 0;
+  sure = 60;
+  aktif = true;
+  document.getElementById("bilgi").innerText = "Skor: 0 | Süre: 60";
+  yeniSoru();
+
+  clearInterval(zaman);
+  zaman = setInterval(() => {
+    sure--;
+    document.getElementById("bilgi").innerText =
+      "Skor: " + skor + " | Süre: " + sure;
+
+    if (sure <= 0) {
+      clearInterval(zaman);
+      aktif = false;
+      document.getElementById("soru").innerText = "Oyun Bitti!";
     }
+  }, 1000);
+}
 
-    function yeniSoru() {
-      a = Math.floor(Math.random() * 10);
-      b = Math.floor(Math.random() * 10);
-      document.getElementById("soru").innerText = a + " + " + b + " = ?";
-      document.getElementById("cevap").value = "";
-      document.getElementById("sonuc").innerText = "";
-    }
-
-    function kontrol() {
-      let c = document.getElementById("cevap").value;
-      if (Number(c) === a + b) {
-        document.getElementById("sonuc").innerText = "Doğru 🎉";
-        yeniSoru();
-      } else {
-        document.getElementById("sonuc").innerText = "Yanlış ❌";
-      }
-    }
-  </script>
+function kontrol() {
+  if (!aktif) return;
+  let gir = document.getElementById("cevap").value;
+  if (parseInt(gir) === dogru) skor++;
+  document.getElementById("cevap").value = "";
+  yeniSoru();
+}
+</script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
