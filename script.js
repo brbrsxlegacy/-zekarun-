@@ -31,6 +31,7 @@ function start(o) {
     if (time <= 0) finish();
   }, 1000);
 }
+setTimeout(() => inp.focus(), 300);
 
 function next() {
   a = rand();
@@ -74,3 +75,4 @@ function rand() {
 inp.addEventListener("keydown", e => {
   if (e.key === "Enter") check();
 });
+
