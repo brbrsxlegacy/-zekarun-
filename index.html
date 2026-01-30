@@ -2,32 +2,35 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Matematik Oyunu</title>
+    <title>ZekaRun</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div id="menu">
-    <h1>Matematik Seç</h1>
-    <div class="box" onclick="startGame('+')">Toplama</div>
-    <div class="box" onclick="startGame('-')">Çıkarma</div>
-    <div class="box" onclick="startGame('*')">Çarpma</div>
-    <div class="box" onclick="startGame('/')">Bölme</div>
+<div id="menu" class="screen active">
+    <h1>ZekaRun</h1>
+    <div class="grid">
+        <button onclick="startGame('+')">➕ Toplama</button>
+        <button onclick="startGame('-')">➖ Çıkarma</button>
+        <button onclick="startGame('*')">✖ Çarpma</button>
+        <button onclick="startGame('/')">➗ Bölme</button>
+    </div>
 </div>
 
-<div id="game" class="hidden">
-    <h2 id="question"></h2>
-    <input type="number" id="answer" placeholder="Cevabın">
-    <button onclick="checkAnswer()">Kontrol Et</button>
-    <button class="exit" onclick="exitGame()">Çık</button>
-    <p id="result"></p>
+<div id="game" class="screen">
+    <button class="exit" onclick="goMenu()">⟵ Çık</button>
+    <div class="info">
+        <span id="time">60</span> sn
+        <span id="score">Skor: 0</span>
+    </div>
+
+    <h2 id="question">Soru</h2>
+    <input id="answer" type="number" placeholder="Cevap" autofocus>
 </div>
 
 <script src="script.js"></script>
 </body>
 </html>
-
-
 
 
 
