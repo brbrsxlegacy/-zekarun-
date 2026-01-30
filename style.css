@@ -95,4 +95,47 @@ h1 {
   text-align: center;
 }
 
+#send {
+  margin-top: 20px;
+  padding: 15px 30px;
+  font-size: 20px;
+  border-radius: 14px;
+  border: 2px solid #0ff;
+  background: transparent;
+  color: #0ff;
+  box-shadow: 0 0 20px #0ff;
+}
+
+#send:active {
+  background: #0ff;
+  color: #000;
+}
+
+/* MOBİL AYAR */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 40px;
+  }
+
+  .cards {
+    grid-template-columns: repeat(2, 120px);
+    gap: 25px;
+  }
+
+  .card {
+    width: 120px;
+    height: 120px;
+    font-size: 40px;
+  }
+
+  #q {
+    font-size: 36px;
+  }
+
+  #inp {
+    width: 180px;
+    font-size: 20px;
+  }
+}
+
 
