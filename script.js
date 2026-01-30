@@ -1,47 +1,83 @@
-let operator;
-let correctAnswer;
+let op = "+";
+let a, b;
+let score = 0;
+let time = 60;
+let timer;
 
-function startGame(op) {
-    operator = op;
-    document.getElementById("menu").style.display = "none";
-    document.getElementById("game").classList.remove("hidden");
+const menu = document.getElementById("menu");
+const game = document.getElementById("game");
+const question = document.getElementById("question");
+const answer = document.getElementById("answer");
+const timeEl = document.getElementById("time");
+const scoreEl = document.getElementById("score");
+
+function startGame(operation) {
+    op = operation;
+    score = 0;
+    time = 60;
+    scoreEl.textContent = "Skor: 0";
+    timeEl.textContent = time;
+
+    menu.classList.remove("active");
+    game.classList.add("active");
+
     newQuestion();
+    answer.value = "";
+    answer.focus();
+
+    clearInterval(timer);
+    timer = setInterval(() => {
+        time--;
+        timeEl.textContent = time;
+        if (time <= 0) endGame();
+    }, 1000);
 }
 
 function newQuestion() {
-    let a = Math.floor(Math.random() * 10) + 1;
-    let b = Math.floor(Math.random() * 10) + 1;
+    a = rand();
+    b = rand();
 
-    if (operator === "/") {
-        a = a * b; // tam bölünsün diye
+    if (op === "/") {
+        a = a * b;
     }
 
-    document.getElementById("question").innerText =
-        a + " " + operator + " " + b + " = ?";
-
-    switch (operator) {
-        case "+": correctAnswer = a + b; break;
-        case "-": correctAnswer = a - b; break;
-        case "*": correctAnswer = a * b; break;
-        case "/": correctAnswer = a / b; break;
-    }
-
-    document.getElementById("answer").value = "";
-    document.getElementById("result").innerText = "";
+    question.textContent = `${a} ${op} ${b} = ?`;
 }
 
 function checkAnswer() {
-    let userAnswer = Number(document.getElementById("answer").value);
-
-    if (userAnswer === correctAnswer) {
-        document.getElementById("result").innerText = "Doğru 🎉";
-        newQuestion();
-    } else {
-        document.getElementById("result").innerText = "Yanlış ❌";
+    let correct;
+    switch (op) {
+        case "+": correct = a + b; break;
+        case "-": correct = a - b; break;
+        case "*": correct = a * b; break;
+        case "/": correct = a / b; break;
     }
+
+    if (Number(answer.value) === correct) {
+        score++;
+        scoreEl.textContent = "Skor: " + score;
+    }
+
+    answer.value = "";
+    newQuestion();
 }
 
-function exitGame() {
-    document.getElementById("menu").style.display = "block";
-    document.getElementById("game").classList.add("hidden");
+function endGame() {
+    clearInterval(timer);
+    alert("Süre bitti! Skor: " + score);
+    goMenu();
 }
+
+function goMenu() {
+    clearInterval(timer);
+    game.classList.remove("active");
+    menu.classList.add("active");
+}
+
+function rand() {
+    return Math.floor(Math.random() * 10) + 1;
+}
+
+answer.addEventListener("keydown", e => {
+    if (e.key === "Enter") checkAnswer();
+});
