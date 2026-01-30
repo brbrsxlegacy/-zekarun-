@@ -1,175 +1,32 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<title>ZekaRun</title>
-<style>
-  body {
-    margin: 0;
-    height: 100vh;
-    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: Arial;
-    color: white;
-  }
-
-  .box {
-    background: #0b0b15;
-    width: 340px;
-    padding: 25px;
-    text-align: center;
-    border-radius: 16px;
-    box-shadow: 0 0 30px #00f0ff;
-  }
-
-  h1 {
-    color: #00f0ff;
-    text-shadow: 0 0 10px #00f0ff;
-  }
-
-  #soru {
-    font-size: 24px;
-    margin: 20px 0;
-  }
-
-  input {
-    width: 80px;
-    padding: 8px;
-    font-size: 18px;
-    text-align: center;
-  }
-
-  button {
-    margin-top: 15px;
-    padding: 10px 25px;
-    font-size: 16px;
-    background: transparent;
-    color: #00f0ff;
-    border: 2px solid #00f0ff;
-    border-radius: 25px;
-    cursor: pointer;
-    box-shadow: 0 0 10px #00f0ff;
-  }
-
-  button:hover {
-    background: #00f0ff;
-    color: black;
-  }
-
-  .info {
-    margin-top: 15px;
-    font-size: 14px;
-  }
-</style>
+    <meta charset="UTF-8">
+    <title>Matematik Oyunu</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="box" id="menu">
-  <h1>ZekaRun</h1>
-  <p>1 dakikada kaç soru çözebilirsin?</p>
-  <button onclick="basla()">Başla</button>
+<div id="menu">
+    <h1>Matematik Seç</h1>
+    <div class="box" onclick="startGame('+')">Toplama</div>
+    <div class="box" onclick="startGame('-')">Çıkarma</div>
+    <div class="box" onclick="startGame('*')">Çarpma</div>
+    <div class="box" onclick="startGame('/')">Bölme</div>
 </div>
 
-<div class="box" id="oyun" style="display:none;">
-  <div id="sure">Süre: 60</div>
-  <div id="soru"></div>
-  <input id="cevap" type="number" onkeydown="enterKontrol(event)">
-  <br>
-  <button onclick="kontrol()">Cevapla</button>
-  <div class="info" id="puan">Puan: 0</div>
+<div id="game" class="hidden">
+    <h2 id="question"></h2>
+    <input type="number" id="answer" placeholder="Cevabın">
+    <button onclick="checkAnswer()">Kontrol Et</button>
+    <button class="exit" onclick="exitGame()">Çık</button>
+    <p id="result"></p>
 </div>
 
-<script>
-let a, b, puan = 0, sure = 60, timer;
-
-function basla() {
-  document.getElementById("menu").style.display = "none";
-  document.getElementById("oyun").style.display = "block";
-  puan = 0;
-  sure = 60;
-  document.getElementById("puan").innerText = "Puan: 0";
-  yeniSoru();
-  timer = setInterval(sayac, 1000);
-}
-
-function yeniSoru() {
-  a = Math.floor(Math.random() * 10);
-  b = Math.floor(Math.random() * 10);
-  document.getElementById("soru").innerText = `${a} + ${b} = ?`;
-  document.getElementById("cevap").value = "";
-}
-
-function kontrol() {
-  let c = Number(document.getElementById("cevap").value);
-  if (c === a + b) {
-    puan++;
-    document.getElementById("puan").innerText = "Puan: " + puan;
-    yeniSoru();
-  }
-}
-
-function sayac() {
-  sure--;
-  document.getElementById("sure").innerText = "Süre: " + sure;
-  if (sure <= 0) {
-    clearInterval(timer);
-    alert("Süre bitti! Puanın: " + puan);
-    location.reload();
-  }
-}
-</script>
-
+<script src="script.js"></script>
 </body>
-  <script>
-let a, b, puan = 0, sure = 60, timer;
-
-function basla() {
-  document.getElementById("menu").style.display = "none";
-  document.getElementById("oyun").style.display = "block";
-  puan = 0;
-  sure = 60;
-  document.getElementById("puan").innerText = "Puan: 0";
-  yeniSoru();
-  timer = setInterval(sayac, 1000);
-}
-
-function yeniSoru() {
-  a = Math.floor(Math.random() * 10);
-  b = Math.floor(Math.random() * 10);
-  document.getElementById("soru").innerText = `${a} + ${b} = ?`;
-  document.getElementById("cevap").value = "";
-}
-
-function kontrol() {
-  let c = Number(document.getElementById("cevap").value);
-  if (c === a + b) {
-    puan++;
-    document.getElementById("puan").innerText = "Puan: " + puan;
-    yeniSoru();
-  }
-}
-
-function sayac() {
-  sure--;
-  document.getElementById("sure").innerText = "Süre: " + sure;
-  if (sure <= 0) {
-    clearInterval(timer);
-    alert("Süre bitti! Puanın: " + puan);
-    location.reload();
-  }
-}
-</script>
-<script>
-function enterKontrol(e) {
-  if (e.key === "Enter") {
-    kontrol();
-  }
-}
-</script>
-
 </html>
+
 
 
 
