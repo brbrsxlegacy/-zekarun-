@@ -1,0 +1,55 @@
+body {
+  background: linear-gradient(135deg, #1f1c2c, #928dab);
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  color: white;
+  margin: 0;
+  padding-top: 50px;
+}
+
+h2 {
+  font-size: 42px;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px #ff9800, 0 0 20px #ff9800;
+}
+
+
+#soru {
+  font-size: 36px;
+  margin: 20px;
+}
+
+input {
+  font-size: 20px;
+  padding: 8px;
+  width: 120px;
+  border-radius: 8px;
+  border: none;
+  text-align: center;
+}
+
+button {
+  font-size: 18px;
+  padding: 10px 18px;
+  margin: 10px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background: #ff9800;
+  color: black;
+  transition: 0.2s;
+}
+
+button:hover {
+  transform: scale(1.08);
+  background: #ffc107;
+}
+
+#bilgi {
+  font-size: 20px;
+  margin-top: 15px;
+}
+p {
+  font-size: 18px;
+  opacity: 0.9;
+}
