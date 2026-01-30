@@ -75,7 +75,7 @@
 <div class="box" id="oyun" style="display:none;">
   <div id="sure">Süre: 60</div>
   <div id="soru"></div>
-  <input id="cevap" type="number">
+  <input id="cevap" type="number" onkeydown="enterKontrol(event)">
   <br>
   <button onclick="kontrol()">Cevapla</button>
   <div class="info" id="puan">Puan: 0</div>
@@ -161,8 +161,16 @@ function sayac() {
   }
 }
 </script>
+<script>
+function enterKontrol(e) {
+  if (e.key === "Enter") {
+    kontrol();
+  }
+}
+</script>
 
 </html>
+
 
 
 
