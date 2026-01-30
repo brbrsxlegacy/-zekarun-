@@ -23,6 +23,9 @@ body {
 
 /* ORTAK */
 #menu, #game {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
   display: none;
@@ -31,8 +34,9 @@ body {
   flex-direction: column;
 }
 
-#menu { display: flex; }
-
+#menu {
+  display: flex;
+}
 /* BAŞLIK */
 h1 {
   font-size: 60px;
@@ -143,6 +147,12 @@ h1 {
   #inp {
     width: 180px;
     font-size: 20px;
+  }
+}
+
+@supports (-webkit-touch-callout: none) {
+  body {
+    min-height: -webkit-fill-available;
   }
 }
 
