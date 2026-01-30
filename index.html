@@ -122,7 +122,48 @@ function sayac() {
 </script>
 
 </body>
+  <script>
+let a, b, puan = 0, sure = 60, timer;
+
+function basla() {
+  document.getElementById("menu").style.display = "none";
+  document.getElementById("oyun").style.display = "block";
+  puan = 0;
+  sure = 60;
+  document.getElementById("puan").innerText = "Puan: 0";
+  yeniSoru();
+  timer = setInterval(sayac, 1000);
+}
+
+function yeniSoru() {
+  a = Math.floor(Math.random() * 10);
+  b = Math.floor(Math.random() * 10);
+  document.getElementById("soru").innerText = `${a} + ${b} = ?`;
+  document.getElementById("cevap").value = "";
+}
+
+function kontrol() {
+  let c = Number(document.getElementById("cevap").value);
+  if (c === a + b) {
+    puan++;
+    document.getElementById("puan").innerText = "Puan: " + puan;
+    yeniSoru();
+  }
+}
+
+function sayac() {
+  sure--;
+  document.getElementById("sure").innerText = "Süre: " + sure;
+  if (sure <= 0) {
+    clearInterval(timer);
+    alert("Süre bitti! Puanın: " + puan);
+    location.reload();
+  }
+}
+</script>
+
 </html>
+
 
 
 
