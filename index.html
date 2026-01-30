@@ -75,22 +75,14 @@
 <div class="box" id="oyun" style="display:none;">
   <div id="sure">Süre: 60</div>
   <div id="soru"></div>
-  <input id="cevap" type="number" onkeydown="enterKontrol(event)">
+  <input id="cevap" type="number">
   <br>
   <button onclick="kontrol()">Cevapla</button>
   <div class="info" id="puan">Puan: 0</div>
 </div>
 
 <script>
-function enterKontrol(e) {
-  if (e.key === "Enter") {
-    kontrol(); // senin cevap kontrol eden fonksiyon
-  }
-}
-</script>
-
- 
-
+let a, b, puan = 0, sure = 60, timer;
 
 function basla() {
   document.getElementById("menu").style.display = "none";
@@ -127,11 +119,10 @@ function sayac() {
     location.reload();
   }
 }
-
 </script>
+
 </body>
 </html>
-
 
 
 
