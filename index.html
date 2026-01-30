@@ -3,38 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <title>ZekaRun</title>
-  <style>
-    body {
-      background-color: #cfcfcf; /* gri */
-      font-family: Arial;
-      text-align: center;
-      margin-top: 100px;
-    }
-
-    .box {
-      background-color: white;
-      width: 300px;
-      margin: auto;
-      padding: 20px;
-      border-radius: 8px;
-    }
-
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div class="box">
+  <div class="box" id="menu">
     <h1>ZekaRun</h1>
-    <p>Matematik oyunu</p>
-    <button>Başla</button>
+    <p>Hızlı matematik oyunu</p>
+    <button onclick="basla()">Başla</button>
   </div>
+
+  <div class="box" id="oyun" style="display:none;">
+    <h2 id="soru"></h2>
+    <input type="number" id="cevap">
+    <br><br>
+    <button onclick="kontrol()">Cevapla</button>
+    <p id="sonuc"></p>
+  </div>
+
+  <script>
+    let a, b;
+
+    function basla() {
+      document.getElementById("menu").style.display = "none";
+      document.getElementById("oyun").style.display = "block";
+      yeniSoru();
+    }
+
+    function yeniSoru() {
+      a = Math.floor(Math.random() * 10);
+      b = Math.floor(Math.random() * 10);
+      document.getElementById("soru").innerText = a + " + " + b + " = ?";
+      document.getElementById("cevap").value = "";
+      document.getElementById("sonuc").innerText = "";
+    }
+
+    function kontrol() {
+      let c = document.getElementById("cevap").value;
+      if (Number(c) === a + b) {
+        document.getElementById("sonuc").innerText = "Doğru 🎉";
+        yeniSoru();
+      } else {
+        document.getElementById("sonuc").innerText = "Yanlış ❌";
+      }
+    }
+  </script>
 
 </body>
 </html>
+
+
 
 
 
