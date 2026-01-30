@@ -1,94 +1,51 @@
-* {
-  box-sizing: border-box;
-}
-
 body {
-  margin: 0;
-  height: 100vh;
-  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: Arial, sans-serif;
-  color: white;
+    font-family: Arial, sans-serif;
+    background: #121212;
+    color: white;
+    text-align: center;
 }
 
-/* Oyun kutusu */
+#menu {
+    margin-top: 60px;
+}
+
 .box {
-  background: #0b0b15;
-  width: 340px;
-  padding: 25px;
-  text-align: center;
-  border-radius: 18px;
-  box-shadow:
-    0 0 15px #00f0ff,
-    0 0 30px #00f0ff;
-  animation: glow 2s infinite alternate;
+    display: inline-block;
+    width: 150px;
+    height: 100px;
+    background: #1e90ff;
+    margin: 10px;
+    line-height: 100px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 12px;
 }
 
-@keyframes glow {
-  from {
-    box-shadow: 0 0 15px #00f0ff;
-  }
-  to {
-    box-shadow: 0 0 35px #00f0ff;
-  }
+.box:hover {
+    background: #00bfff;
 }
 
-/* Başlık */
-h1 {
-  margin-top: 0;
-  color: #00f0ff;
-  text-shadow:
-    0 0 5px #00f0ff,
-    0 0 15px #00f0ff;
+.hidden {
+    display: none;
 }
 
-/* Soru */
-#soru {
-  font-size: 26px;
-  margin: 20px 0;
-}
-
-/* Sayaç & puan */
-#sure, #puan {
-  font-size: 14px;
-  margin: 8px 0;
-  color: #aeefff;
-}
-
-/* Input */
 input {
-  width: 90px;
-  padding: 10px;
-  font-size: 18px;
-  text-align: center;
-  border-radius: 8px;
-  border: none;
-  outline: none;
-  margin-bottom: 10px;
+    padding: 8px;
+    font-size: 16px;
+    margin: 10px;
 }
 
-/* Buton */
 button {
-  padding: 12px 30px;
-  font-size: 16px;
-  background: transparent;
-  color: #00f0ff;
-  border: 2px solid #00f0ff;
-  border-radius: 30px;
-  cursor: pointer;
-  box-shadow: 0 0 10px #00f0ff;
-  transition: 0.2s;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 5px;
 }
 
-button:hover {
-  background: #00f0ff;
-  color: #000;
-  box-shadow:
-    0 0 20px #00f0ff,
-    0 0 40px #00f0ff;
+.exit {
+    background: crimson;
+    color: white;
+    border: none;
+    border-radius: 6px;
 }
-
-
 
